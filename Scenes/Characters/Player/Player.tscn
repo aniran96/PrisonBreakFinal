@@ -1,9 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbyc548jngp0e"]
+[gd_scene load_steps=22 format=3 uid="uid://dbyc548jngp0e"]
 
 [ext_resource type="CapsuleMesh" uid="uid://c7ok4qe278tuf" path="res://Resources/Meshes/Character Meshes/basic_capsule_mesh.tres" id="1_8y2kw"]
 [ext_resource type="Script" uid="uid://cunbelsklmsjl" path="res://Scripts/Characters/Player/Player.cs" id="1_gqvyu"]
 [ext_resource type="Shape3D" uid="uid://cjgyj7qftxibc" path="res://Resources/Meshes/CollisionShapes/basic_capsule_shape_3d.tres" id="2_gqvyu"]
 [ext_resource type="PackedScene" uid="uid://cnlyxwcd8pmdv" path="res://Scenes/StateMachine/StateMachine.tscn" id="4_uapsp"]
+[ext_resource type="Script" uid="uid://dpi3ckk7umutx" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerLockedState.cs" id="5_rdi2b"]
+[ext_resource type="Script" uid="uid://lpdw183syls1" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerIdleState.cs" id="6_vqggo"]
+[ext_resource type="Script" uid="uid://4w06nksquv3t" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerWalkState.cs" id="7_4bb8e"]
+[ext_resource type="Script" uid="uid://dm3b013syes2n" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerRunState.cs" id="8_ruack"]
+[ext_resource type="Script" uid="uid://brjsycyu12t1o" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerDashState.cs" id="9_tde8l"]
+[ext_resource type="Script" uid="uid://b1k2wkyb75se8" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerJumpState.cs" id="10_t2lio"]
+[ext_resource type="Script" uid="uid://cbfhkiwbiy888" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerFallState.cs" id="11_ro4wx"]
+[ext_resource type="Script" uid="uid://dwkbd1py8x4db" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerCrawlState.cs" id="12_uj536"]
+
+[sub_resource type="Animation" id="Animation_uapsp"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_7vix2"]
+resource_name = "walk"
+
+[sub_resource type="Animation" id="Animation_gu5w3"]
+resource_name = "run"
+
+[sub_resource type="Animation" id="Animation_ov5rv"]
+resource_name = "jump"
+
+[sub_resource type="Animation" id="Animation_xst4l"]
+resource_name = "fall"
+
+[sub_resource type="Animation" id="Animation_p3isv"]
+resource_name = "dash"
+
+[sub_resource type="Animation" id="Animation_m81am"]
+resource_name = "crawl"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n0syu"]
+_data = {
+&"crawl": SubResource("Animation_m81am"),
+&"dash": SubResource("Animation_p3isv"),
+&"fall": SubResource("Animation_xst4l"),
+&"idle": SubResource("Animation_uapsp"),
+&"jump": SubResource("Animation_ov5rv"),
+&"run": SubResource("Animation_gu5w3"),
+&"walk": SubResource("Animation_7vix2")
+}
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rdi2b"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_gqvyu")
@@ -19,16 +61,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 
-[node name="StateMachine" parent="." instance=ExtResource("4_uapsp")]
+[node name="StateMachine" parent="." node_paths=PackedStringArray("_currentState", "_states") instance=ExtResource("4_uapsp")]
+_currentState = NodePath("IdleState")
+_states = [NodePath("LockedState"), NodePath("IdleState"), NodePath("WalkState"), NodePath("RunState"), NodePath("DashState"), NodePath("JumpState"), NodePath("FallState"), NodePath("CrawlState")]
+
+[node name="LockedState" type="Node" parent="StateMachine"]
+script = ExtResource("5_rdi2b")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("6_vqggo")
 
 [node name="WalkState" type="Node" parent="StateMachine"]
+script = ExtResource("7_4bb8e")
 
 [node name="RunState" type="Node" parent="StateMachine"]
+script = ExtResource("8_ruack")
 
 [node name="DashState" type="Node" parent="StateMachine"]
+script = ExtResource("9_tde8l")
 
 [node name="JumpState" type="Node" parent="StateMachine"]
+script = ExtResource("10_t2lio")
 
 [node name="FallState" type="Node" parent="StateMachine"]
+script = ExtResource("11_ro4wx")
 
 [node name="CrawlState" type="Node" parent="StateMachine"]
+script = ExtResource("12_uj536")
+
+[node name="CharacterAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n0syu")
+}
+
+[node name="CharacterAnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_rdi2b")
+anim_player = NodePath("../CharacterAnimator")

@@ -1,25 +1,11 @@
 using Godot;
+using PrisonBreak.Characters.Abstract;
 using PrisonBreak.Utilities;
 
 namespace PrisonBreak.Characters.Player;
 
-public partial class Player : CharacterBody3D
+public partial class Player : Character
 {
-    // exported variables
-    [ExportGroup("mvoement variables")]
-    [Export]
-    private float _walkSpeed = 5.0f;
-    [Export]
-    private float _runSpeed = 10.0f;
-    [Export]
-    private float _gravity = 9.8f;
-    [Export]
-    private float _crawlSpeed = 3.0f;
-    [Export]
-    private float _jumpSpeed = 20.0f;
-    [Export]
-    private float _jumpHeight = 1.0f;
-
     // variables
     private Vector2 _inputVector = Vector2.Zero;
     private Vector3 _inputDirection = Vector3.Zero;
@@ -34,8 +20,7 @@ public partial class Player : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-
-        if (!IsOnFloor()) { _velocity.Y -= _gravity * (float)delta; }
+        if (!IsOnFloor()) { _velocity.Y -= gravity * (float)delta; }
 
         Velocity = _velocity;
         MoveAndSlide();
@@ -59,7 +44,7 @@ public partial class Player : CharacterBody3D
 
         if (Input.IsActionJustPressed(GameConstants.INPUT_JUMP))
         {
-            _velocity.Y += _jumpSpeed;
+            _velocity.Y += jumpSpeed;
         }
 
     }

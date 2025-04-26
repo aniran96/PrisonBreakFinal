@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://cnlyxwcd8pmdv"]
+[gd_scene load_steps=2 format=3 uid="uid://cnlyxwcd8pmdv"]
 
-[node name="StateMachine" type="Node"]
+[ext_resource type="Script" uid="uid://djr5fnr6bf8a2" path="res://Scripts/StateMachine/StateMachine.cs" id="1_57d4b"]
+
+[node name="StateMachine" type="Node" node_paths=PackedStringArray("_states")]
+script = ExtResource("1_57d4b")
+_states = []
