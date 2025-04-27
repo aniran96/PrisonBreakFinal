@@ -13,26 +13,26 @@
 [ext_resource type="Script" uid="uid://cbfhkiwbiy888" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerFallState.cs" id="11_ro4wx"]
 [ext_resource type="Script" uid="uid://dwkbd1py8x4db" path="res://Scripts/Characters/Player/VariousPlayerStates/PlayerCrawlState.cs" id="12_uj536"]
 
-[sub_resource type="Animation" id="Animation_uapsp"]
-resource_name = "idle"
-
-[sub_resource type="Animation" id="Animation_7vix2"]
-resource_name = "walk"
-
-[sub_resource type="Animation" id="Animation_gu5w3"]
-resource_name = "run"
-
-[sub_resource type="Animation" id="Animation_ov5rv"]
-resource_name = "jump"
-
-[sub_resource type="Animation" id="Animation_xst4l"]
-resource_name = "fall"
+[sub_resource type="Animation" id="Animation_m81am"]
+resource_name = "crawl"
 
 [sub_resource type="Animation" id="Animation_p3isv"]
 resource_name = "dash"
 
-[sub_resource type="Animation" id="Animation_m81am"]
-resource_name = "crawl"
+[sub_resource type="Animation" id="Animation_xst4l"]
+resource_name = "fall"
+
+[sub_resource type="Animation" id="Animation_uapsp"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_ov5rv"]
+resource_name = "jump"
+
+[sub_resource type="Animation" id="Animation_gu5w3"]
+resource_name = "run"
+
+[sub_resource type="Animation" id="Animation_7vix2"]
+resource_name = "walk"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n0syu"]
 _data = {
