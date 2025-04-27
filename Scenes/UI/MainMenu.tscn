@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://shepulfu7rtu"]
+
+[ext_resource type="PackedScene" uid="uid://2w8vl770gfsc" path="res://Scenes/UI/Buttons/NewGame.tscn" id="1_mjmdf"]
+[ext_resource type="PackedScene" uid="uid://husyhht1ofmo" path="res://Scenes/UI/Buttons/ExitButton.tscn" id="2_72sra"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 256
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="NewGame" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_mjmdf")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VolumeSettings" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Volume Settings"
+
+[node name="ResolutionSettings" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ResolutionSettings"
+
+[node name="ExitButton" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_72sra")]
+layout_mode = 2
+size_flags_horizontal = 4

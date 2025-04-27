@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://husyhht1ofmo"]
+
+[ext_resource type="Script" uid="uid://dajf3oxv676pc" path="res://Scripts/UI/ExitButton.cs" id="1_33q0j"]
+
+[node name="ExitButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Exit"
+script = ExtResource("1_33q0j")

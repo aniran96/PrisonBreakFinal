@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://2w8vl770gfsc"]
+
+[ext_resource type="Script" uid="uid://c30q8sysmyytc" path="res://Scripts/UI/NewGame.cs" id="1_nwysn"]
+
+[node name="NewGame" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Start New Game"
+script = ExtResource("1_nwysn")

@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvxcub3wmicyb"]
+
+[ext_resource type="PackedScene" uid="uid://dqcbmu80o0hyy" path="res://Scenes/UI/Scroll Options/VolumeSlider.tscn" id="1_3opg1"]
+
+[node name="VolumeSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 256
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MasterVolume" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterSlider" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_3opg1")]
+layout_mode = 2
+_busName = &"Master"
+
+[node name="MusicVolume" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicSlider" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_3opg1")]
+layout_mode = 2
+_busName = &"Music"
+
+[node name="SfxVolume" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sfx Volum"
+
+[node name="SfxSlider" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_3opg1")]
+layout_mode = 2
+_busName = &"Sfx"
+
+[node name="CharacterVolume" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Character Volume"
+
+[node name="CharacterSlider" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_3opg1")]
+layout_mode = 2
+_busName = &"Character"
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return to Main Menu"

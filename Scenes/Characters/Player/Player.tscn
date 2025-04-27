@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbyc548jngp0e"]
+[gd_scene load_steps=23 format=3 uid="uid://dbyc548jngp0e"]
 
 [ext_resource type="CapsuleMesh" uid="uid://c7ok4qe278tuf" path="res://Resources/Meshes/Character Meshes/basic_capsule_mesh.tres" id="1_8y2kw"]
 [ext_resource type="Script" uid="uid://cunbelsklmsjl" path="res://Scripts/Characters/Player/Player.cs" id="1_gqvyu"]
@@ -34,8 +34,12 @@ resource_name = "run"
 [sub_resource type="Animation" id="Animation_7vix2"]
 resource_name = "walk"
 
+[sub_resource type="Animation" id="Animation_rdi2b"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n0syu"]
 _data = {
+&"RESET": SubResource("Animation_rdi2b"),
 &"crawl": SubResource("Animation_m81am"),
 &"dash": SubResource("Animation_p3isv"),
 &"fall": SubResource("Animation_xst4l"),
@@ -51,15 +55,11 @@ _data = {
 script = ExtResource("1_gqvyu")
 
 [node name="CharacterMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249732, 0, 0)
 mesh = ExtResource("1_8y2kw")
 
 [node name="CharacterCollider" type="CollisionShape3D" parent="."]
 shape = ExtResource("2_gqvyu")
-
-[node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("_currentState", "_states") instance=ExtResource("4_uapsp")]
 _currentState = NodePath("IdleState")
@@ -96,4 +96,3 @@ libraries = {
 
 [node name="CharacterAnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_rdi2b")
-anim_player = NodePath("../CharacterAnimator")

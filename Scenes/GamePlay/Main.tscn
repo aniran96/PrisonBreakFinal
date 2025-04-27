@@ -14,6 +14,14 @@ background_mode = 2
 sky = SubResource("Sky_8te80")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.0
+fog_sun_scatter = 0.58
+fog_density = 0.2811
+fog_height = -86.78
+fog_height_density = 5.1525
+volumetric_fog_enabled = true
 
 [node name="Main" type="Node3D"]
 
@@ -22,14 +30,50 @@ environment = SubResource("Environment_e1t84")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_color = Color(0.717647, 1, 1, 1)
 shadow_enabled = true
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, -0.000139194, 0.000362223, 0.000139694, 0.999999, -0.00135939, -0.00036203, 0.00135944, 0.999999, 0, 0, 0)
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 size = Vector3(20, 1, 20)
 
+[node name="Wall" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25141, -4.64152)
+size = Vector3(20, 10, 1)
+
+[node name="RectangularDoor" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21869, -4.53796)
+operation = 2
+size = Vector3(5, 5, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -0.0431137, -0.99907, 0, 0.99907, -0.0431137, 4.70556, 2.93833, -4.69972)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.999604, 0.024106, -0.0144955, -0.0260716, 0.987452, -0.155752, 0.0105591, 0.156068, 0.98769, 1.44304, 2.4008, -4.32302)
+
 [node name="Player" parent="." instance=ExtResource("1_8te80")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.7914)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51127, 2.24988)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48195, 0)
+light_energy = 2.041
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 5.26
+omni_attenuation = -2.252
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[editable path="Player"]
