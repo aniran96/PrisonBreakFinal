@@ -12,6 +12,18 @@ grow_vertical = 2
 
 [node name="StateMachine" parent="." instance=ExtResource("1_hre8d")]
 
+[node name="Node" type="Node" parent="StateMachine"]
+
+[node name="Node2" type="Node" parent="StateMachine"]
+
+[node name="Node3" type="Node" parent="StateMachine"]
+
+[node name="Node4" type="Node" parent="StateMachine"]
+
+[node name="Node5" type="Node" parent="StateMachine"]
+
+[node name="Node6" type="Node" parent="StateMachine"]
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
